@@ -1,0 +1,11 @@
+{% load i18n %}
+{% load myblog_tags %}
+
+<div id="articles-tag-cloud">
+  <div>{% trans 'Tags' %}:</div>
+  {% for tag in tags|sort_as_list:'count' %}
+    <div style="margin-top:5px;">
+      <a class="btn btn-mini btn-info" href="{{ tag.get_absolute_url }}">{{ tag.name }}<sup> {{ tag.count }}</sup></a>
+    </div>
+  {% endfor %}
+</div>

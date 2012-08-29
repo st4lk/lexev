@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<div class="transparent_well">
+  <h1><a href="{{ article.get_absolute_url }}" title="{% trans 'Read this article' %}">{{ article.title }}</a></h1>
+  <p>{{article.description|safe}}</p>
+  <div class="row">
+      <div class="span8">
+        {% if article.tags.count %}{% for tag in article.tags.all %}
+            <a class="btn btn-mini" href="{{ tag.get_absolute_url }}">
+            <!-- <a class="label label-info" href="{{ tag.get_absolute_url }}"> -->
+              {{ tag.name }}</a>
+            {% endfor %}
+        {% else %}{% endif %}
+      </div>
+  </div>
+  <div class="row withgap">
+      <div class="span3">
+        <span>{% trans 'Posted on' %} {{ article.publish_date|date:"Y-m-d" }}</span>
+      </div>
+      <div class="pull-right">
+        <a class="btn btn-small" href="{{ article.get_absolute_url }}#disqus_thread" data-disqus-identifier="{{article.id}}">{% trans 'Comments' %}</a>
+        <a class="btn btn-small" href="{{ article.get_absolute_url }}">{% trans 'Read more' %}</a>
+      </div>
+  </div>
+  
+</div>

@@ -3,3 +3,17 @@
 # build hook has been run but before the application has been started back
 # up again.  This script gets executed directly, so it could be python, php,
 # ruby, etc.
+
+APP_NAME=`cat $OPENSHIFT_REPO_DIR/.app_name`
+
+echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py syncdb --noinput'"
+${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py syncdb --noinput
+
+echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py migrate'"
+${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py migrate
+
+echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py collectstatic --clear --noinput'"
+${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py collectstatic --clear --noinput
+
+echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py rebuild_index --noinput'"
+${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py rebuild_index --noinput

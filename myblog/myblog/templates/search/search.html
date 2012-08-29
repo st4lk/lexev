@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load highlight %}
+
+{% block content %}
+        {% if query %}
+            <h3>{% trans 'Search results for' %}</h3>
+            <p>{{query}}:</p>
+
+            {% for result in page.object_list %}
+                <p><a href="{{ result.object.get_absolute_url }}">{% highlight result.object.title with query %}</a></p>
+                <p>{% highlight result.object.rendered_content with query %}</p>
+                  <div class="row">
+                      <div class="span8">
+                        {% if result.object.tags.count %}{% for tag in result.object.tags.all %}
+                            <a class="btn btn-mini" href="{{ tag.get_absolute_url }}">{% highlight tag.name with query %}</a>
+                            {% endfor %}
+                        {% else %}{% endif %}
+                      </div>
+                  </div>
+            {% empty %}
+                <p>{% trans 'No results found' %}</p>
+                <p>{% trans 'Please note, that search here looks for exact match of entire word' %}<p>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+        {% else %}
+            <p>{% trans 'No results found' %}</p>
+            <p>{% trans 'Please note, that search here looks for exact match of entire word' %}<p>
+        {% endif %}
+{% endblock %}

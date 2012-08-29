@@ -1,0 +1,9 @@
+*.log
+*.pyc
+local_settings.py
+myblog/myblog/public/static/*
+myblog/myblog/public/media/*
+!myblog/myblog/public/static/.gitkeep
+!myblog/myblog/public/media/.gitkeep
+myblog/myblog/whoosh_index/*
+!myblog/myblog/whoosh_index/.gitkeep

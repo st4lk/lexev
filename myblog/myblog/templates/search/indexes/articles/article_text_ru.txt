@@ -1,0 +1,3 @@
+{{ object.title_ru }}
+{{ object.rendered_content_ru }}
+{{ object.tag_list }}

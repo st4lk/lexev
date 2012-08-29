@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Contacts' %}{% endblock %}
+
+{% block content %}
+<p>{% trans 'Hi, my name is Alexey Evseev, i enjoy to develop many things written in python: sites, web crawlers, data mining scripts, desktop application. Also my interests are: traveling, bicycle, basketball, history, movies.' %}</p>
+<h4>Contact me</h4>
+<ul>                  
+    <li><a href="mailto:alexevseev@gmail.com">alexevseev@gmail.com</a></li>
+    <li><a href="skype:mireoo?chat">mireoo (skype)</a></li>
+</ul>
+<h4>Freelance accounts</h4>
+<ul>
+    <li><a href="http://www.free-lance.ru/users/Stalk_fr/">free-lance.ru</a></li>
+    <li><a href="https://www.odesk.com/users/~~9a38efd13b277580">odesk.com</a></li>
+    <li><a href="https://www.elance.com/s/edit/estalk/">elance.com</a></li>
+</ul>
+<h4>Developer accounts</h4>
+<ul>
+    <li><a href="https://github.com/st4lk">github.com</a></li>
+    <li><a href="https://bitbucket.org/account/user/st4lk/">bitbucket.org</a></li>
+    <li><a href="http://sourceforge.net/users/st4lk">sourceforge.net</a></li>
+    <li><a href="http://stackoverflow.com/users/821594/stalk">stackoverflow.com</a></li>
+</ul>
+
+{% endblock %}

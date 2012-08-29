@@ -1,0 +1,119 @@
+{% load article_tags %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{request.LANGUAGE_CODE}}">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    {% if request.LANGUAGE_CODE == 'ru' %}
+    <meta name="language" content="ru-RU" />
+    {% else %}
+    <meta name="language" content="en-US" />
+    {% endif %}
+    <meta name="keywords" content="{% block meta-keywords %}{% endblock %}" />
+    <meta name="description" content="{% block meta-description %}{% endblock %}" />
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% trans "Alexey Evseev's blog" %} - {% block title %}Welcome{% endblock %}</title>
+    <!-- Le styles -->
+    <link rel="shortcut icon" href="{{ STATIC_URL }}/articles/img/favicon.ico" />
+    <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}articles/css/articles.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+
+    {% block extra-head %}{% endblock %}
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">lexev.org - {% trans 'python developer articles' %}</a>
+          <div class="nav-collapse">
+            <ul class="nav pull-right">              
+              <li class="dropdown">
+                <form class="navbar-search pull-left" action="/search/" method="get">
+                  <input type="text" name=q class="search-query span2" placeholder="{% trans 'Search' %}">
+                </form>
+              </li>
+              <li>
+                <a href="{% url contacts %}" >{% trans 'About' %}</a>
+              </li>
+              <li>           
+                <form class="navbar-form" action="/i18n/setlang/" method="post">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="/ru/{{request.get_full_path|slice:'4:'}}" />
+                  <input name="language" type="hidden" value="ru" />
+                  <input class="btn btn-inverse" type="submit" value="RU" /> 
+                </form>
+              </li>
+              <li>
+                <form class="navbar-form" action="/i18n/setlang/" method="post">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="/en/{{request.get_full_path|slice:'4:'}}" />
+                  <input name="language" type="hidden" value="en" />
+                  <input class="btn btn-inverse" type="submit" value="EN" />
+                </form>
+              </li>                
+            </ul>
+          </div><!-- /.nav-collapse -->
+        </div><!-- /container -->
+      </div><!-- /navbar-inner -->
+    </div><!-- /navbar navbar-fixed-top -->
+
+    <div class="container">
+      <div class="content">  
+        <div class="wrapper">
+          <div class="proper-content">
+            <div class="row">
+              <div class="span9">            
+                {% block content %}{% endblock %}
+              </div>
+              <div class="span2" style="border-left:#999 1px solid;">
+                <div class="transparent_well">
+                  {% tag_cloud %}
+                </div>
+                {% block feeds %}
+                <div class="transparent_well">
+                  <img src="{{ STATIC_URL }}articles/img/rss-icon.png" class="img-polaroid">
+                  <a href="{% url articles_rss_feed_latest %}">rss ({% trans 'all' %})</a>
+                </div>
+                {% endblock %}
+              </div>
+            </div>
+          </div><!-- /proper-content -->
+          <div class="push"></div>
+        </div><!-- /wrapper -->
+
+        <div class="footer-wrapper">
+          <footer>
+            <div class="row">
+              <div class="span8">{% trans 'Site build with' %} 
+                <a href="http://python.org" target="_blank" title="Python {{ PYTHON_VERSION }}">Python {{ PYTHON_VERSION }}</a>
+                <a href="http://www.djangoproject.com" target="_blank" title="Django {{ DJANGO_VERSION }}">Django {{ DJANGO_VERSION }}</a>
+                <a href="http://twitter.github.com/bootstrap/" target="_blank" title="Bootstrap">Bootstrap</a>
+              </div>
+              <div class="span3"><a href="{% url contacts %}">{% trans 'Alexey Evseev' %}</a></div>
+            </div>
+          </footer>
+        </div><!-- /footer-wrapper -->
+
+      </div><!-- /content -->
+    </div> <!-- /container -->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+    {% block footer %}
+    {% endblock %}
+  </body>
+</html>
