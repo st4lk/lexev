@@ -170,7 +170,6 @@ INSTALLED_APPS = (
     "articles",
 
     'pages',
-    'preferences',
     'myblog.utils',
 )
 
