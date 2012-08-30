@@ -65,9 +65,8 @@ urlpatterns += i18n_patterns('',
 )
 
 # My urls
-from django.views.generic.simple import direct_to_template
-urlpatterns += i18n_patterns('',
-    url(r'^contacts/$', direct_to_template, {'template': 'contacts.html'}, name="contacts")
+urlpatterns += i18n_patterns('pages.views',
+    url(r'^contacts/$', 'display_about_page', name="contacts")
 )
 
 # Sitemap

@@ -52,16 +52,6 @@ msgstr "Алексей Евсеев"
 msgid "Contacts"
 msgstr "Контакты"
 
-#: .\templates\contacts.html.py:7
-msgid ""
-"Hi, my name is Alexey Evseev, i enjoy to develop many things written in "
-"python: sites, web crawlers, data mining scripts, desktop application. Also "
-"my interests are: traveling, bicycle, basketball, history, movies."
-msgstr ""
-"Привет, меня зовут Алексей Евсеев, мне нравится разрабатывать разные вещи на "
-"python'е: сайты, парсеры, грабберы, прикладные программы. Также мои "
-"интересы: путешествия, велосипед, баскетбол, история, фильмы."
-
 #: .\templates\articles\_articles.html.py:4
 #: .\templates\articles\_meta.html.py:72
 msgid "Read this article"

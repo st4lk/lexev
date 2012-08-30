@@ -169,6 +169,8 @@ INSTALLED_APPS = (
     "south",
     "articles",
 
+    'pages',
+    'preferences',
     'myblog.utils',
 )
 
