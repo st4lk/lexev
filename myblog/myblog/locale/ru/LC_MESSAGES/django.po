@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-27 23:03+0400\n"
+"POT-Creation-Date: 2012-08-31 20:28+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,30 +21,30 @@ msgstr ""
 
 #: .\templates\base.html.py:19
 #, fuzzy
-msgid "Alexey Evseev's blog"
-msgstr "Алексей Евсеев"
+msgid "Python developer articles"
+msgstr "Записи python разработчика"
 
-#: .\templates\base.html.py:38
+#: .\templates\base.html.py:39
 msgid "python developer articles"
 msgstr "записи python разработчика"
 
-#: .\templates\base.html.py:43
+#: .\templates\base.html.py:44
 msgid "Search"
 msgstr "Поиск"
 
-#: .\templates\base.html.py:47
+#: .\templates\base.html.py:48
 msgid "About"
 msgstr "Контакты"
 
-#: .\templates\base.html.py:86
+#: .\templates\base.html.py:87
 msgid "all"
 msgstr "все"
 
-#: .\templates\base.html.py:98
+#: .\templates\base.html.py:99
 msgid "Site build with"
 msgstr "Сайт построен используя"
 
-#: .\templates\base.html.py:103
+#: .\templates\base.html.py:104
 msgid "Alexey Evseev"
 msgstr "Алексей Евсеев"
 
@@ -53,7 +53,7 @@ msgid "Contacts"
 msgstr "Контакты"
 
 #: .\templates\articles\_articles.html.py:4
-#: .\templates\articles\_meta.html.py:72
+#: .\templates\articles\_meta.html.py:67
 msgid "Read this article"
 msgstr "Читать эту статью"
 
@@ -62,7 +62,6 @@ msgid "Posted on"
 msgstr "Добавлено "
 
 #: .\templates\articles\_articles.html.py:21
-#: .\templates\articles\_meta.html.py:51
 msgid "Comments"
 msgstr "Комментарии"
 
@@ -82,34 +81,30 @@ msgstr "След."
 msgid "Previous"
 msgstr "Пред."
 
-#: .\templates\articles\_meta.html.py:58
+#: .\templates\articles\_meta.html.py:53
 msgid "Follow-Up Articles"
 msgstr "Следующие статьи"
 
-#: .\templates\articles\_meta.html.py:62
+#: .\templates\articles\_meta.html.py:57
 msgid "Read this follow-up article"
 msgstr "Читать эту следующую статью"
 
-#: .\templates\articles\_meta.html.py:62 .\templates\articles\_meta.html.py:72
-#: .\templates\articles\_meta.html.py:82
+#: .\templates\articles\_meta.html.py:57 .\templates\articles\_meta.html.py:67
+#: .\templates\articles\_meta.html.py:77
 msgid "posted"
 msgstr "добавлено"
 
-#: .\templates\articles\_meta.html.py:68
+#: .\templates\articles\_meta.html.py:63
 msgid "Follows Up On"
 msgstr ""
 
-#: .\templates\articles\_meta.html.py:78
+#: .\templates\articles\_meta.html.py:73
 msgid "Related Articles"
 msgstr "Похожие статьи"
 
-#: .\templates\articles\_meta.html.py:82
+#: .\templates\articles\_meta.html.py:77
 msgid "Read this related article"
 msgstr "Прочитать эту похожую статью"
-
-#: .\templates\articles\_meta.html.py:88
-msgid "Article Links"
-msgstr "Ссылки статьи"
 
 #: .\templates\articles\_tag_cloud.html.py:5
 msgid "Tags"
@@ -118,14 +113,6 @@ msgstr "Тэги"
 #: .\templates\articles\article_list.html.py:4
 msgid "Articles"
 msgstr "Статьи"
-
-#: .\templates\articles\base.html.py:12
-msgid "Article Archives"
-msgstr "Архив Статей"
-
-#: .\templates\articles\base.html.py:20
-msgid "View articles posted in this month"
-msgstr "Смотреть статьи обликованные за этот месяц"
 
 #: .\templates\articles\by_author.html.py:4
 msgid "Articles By Author"
@@ -168,6 +155,15 @@ msgstr "Ничего не найдено"
 #: .\templates\search\search.html.py:23 .\templates\search\search.html.py:35
 msgid "Please note, that search here looks for exact match of entire word"
 msgstr "Имейте в виду, что поиск ищет точные совпадения целого слова"
+
+#~ msgid "Article Links"
+#~ msgstr "Ссылки статьи"
+
+#~ msgid "Article Archives"
+#~ msgstr "Архив Статей"
+
+#~ msgid "View articles posted in this month"
+#~ msgstr "Смотреть статьи обликованные за этот месяц"
 
 #~ msgid "latest"
 #~ msgstr "последние"
