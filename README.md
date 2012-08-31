@@ -1,8 +1,9 @@
-Source code for my blog, hosted on [openshift cloud](https://openshift.redhat.com)
+Source code for my blog, avaliable at [lexev.org](http://www.lexev.org) and hosted on [openshift cloud](https://openshift.redhat.com)
+
 It is build with python 2.7, django, mysql.
 
-Runtime Configuration (thanks to [openshift-diy-py27-django example](https://github.com/ehazlett/openshift-diy-py27-django), most install sequence i've got from there)
-======================
+### Runtime Configuration (thanks to [openshift-diy-py27-django example](https://github.com/ehazlett/openshift-diy-py27-django), most install sequence i've got from there)
+
 Create a new OpenShift app:
 
 * `rhc-create-app -a <app_name> -t diy-0.1`
@@ -65,8 +66,7 @@ Cleanup
 * `cd ~`
 * `rm -rf $OPENSHIFT_TMP_DIR/*`
 
-Application Setup
-===================
+### Application Setup
 
 Clone / Fork this repo.
 
@@ -80,6 +80,6 @@ Note: you may get an error during the git push to openshift saying the repo is n
 `git push -f openshift master`
 
 
-* Note
-=======
+### * Note
+
 If you change the Django application name (in the repo it's named `myblog`) you will also need to update the `.app_name` file with the new name in order for the OpenShift start/stop scripts to work.
