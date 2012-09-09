@@ -81,3 +81,12 @@ if not settings.DEBUG:
         url(r'^static/(?P<path>.*)$', 'serve', {'document_root':settings.STATIC_ROOT, 'insecure':True} ),
         url(r'^media/(?P<path>.*)$', 'serve', {'document_root':settings.MEDIA_ROOT, 'insecure':True} ),
     )
+
+urlpatterns += patterns('django.contrib.staticfiles.views',
+    url(r'^robots.txt$', 'serve', {
+        'path':"/txt/robots.txt", 
+        'document_root':settings.STATIC_ROOT, 
+        'insecure':True, 
+        'show_indexes': False
+    }),
+)

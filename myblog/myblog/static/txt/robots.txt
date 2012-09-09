@@ -1,0 +1,12 @@
+User-agent: Yandex
+Host: www.lexev.org
+Disallow: /admin
+
+User-agent: Googlebot
+Disallow: /admin
+
+User-agent: *
+Disallow: /admin
+Crawl-delay: 30
+
+Sitemap: http://www.lexev.org/sitemap.xml
