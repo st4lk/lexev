@@ -1,4 +1,4 @@
-Django==1.4.1
+Django==1.4.3
 git+https://github.com/toastdriven/django-haystack.git
 whoosh==2.4.1
 south==0.7.6
