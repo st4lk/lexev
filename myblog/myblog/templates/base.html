@@ -46,6 +46,14 @@
       })();
 
     </script>
+    <style>
+      .ru-bg{
+        background-image: url("{{ STATIC_URL }}articles/img/ru.png");
+      }
+      .en-bg{
+        background-image: url("{{ STATIC_URL }}articles/img/en.png");
+      }
+    </style>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -67,7 +75,7 @@
                   {% csrf_token %}
                   <input name="next" type="hidden" value="/ru/{{request.get_full_path|slice:'4:'}}" />
                   <input name="language" type="hidden" value="ru" />
-                  <input class="btn btn-inverse" type="submit" value="RU" /> 
+                  <input class="btn btn-inverse btn-lng ru-bg" type="submit" value=""/> 
                 </form>
               </li>
               <li>
@@ -75,7 +83,7 @@
                   {% csrf_token %}
                   <input name="next" type="hidden" value="/en/{{request.get_full_path|slice:'4:'}}" />
                   <input name="language" type="hidden" value="en" />
-                  <input class="btn btn-inverse" type="submit" value="EN" />
+                  <input class="btn btn-inverse btn-lng en-bg" type="submit" value="" />
                 </form>
               </li>                
             </ul>
