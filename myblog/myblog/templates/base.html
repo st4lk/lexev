@@ -61,7 +61,7 @@
         <div class="container">
           <a class="brand" href="/">lexev.org - {% trans 'python developer articles' %}</a>
           <div class="nav-collapse">
-            <ul class="nav pull-right">              
+            <ul class="nav pull-right">
               <li class="dropdown">
                 <form class="navbar-search pull-left" action="/search/" method="get">
                   <input type="text" name=q class="search-query span2" placeholder="{% trans 'Search' %}">
@@ -70,12 +70,12 @@
               <li>
                 <a href="{% url contacts %}" >{% trans 'About' %}</a>
               </li>
-              <li>           
+              <li>
                 <form class="navbar-form" action="/i18n/setlang/" method="post">
                   {% csrf_token %}
                   <input name="next" type="hidden" value="/ru/{{request.get_full_path|slice:'4:'}}" />
                   <input name="language" type="hidden" value="ru" />
-                  <input class="btn btn-inverse btn-lng ru-bg" type="submit" value=""/> 
+                  <input class="btn btn-inverse btn-lng ru-bg" type="submit" value=""/>
                 </form>
               </li>
               <li>
@@ -85,7 +85,7 @@
                   <input name="language" type="hidden" value="en" />
                   <input class="btn btn-inverse btn-lng en-bg" type="submit" value="" />
                 </form>
-              </li>                
+              </li>
             </ul>
           </div><!-- /.nav-collapse -->
         </div><!-- /container -->
@@ -93,11 +93,11 @@
     </div><!-- /navbar navbar-fixed-top -->
 
     <div class="container">
-      <div class="content">  
+      <div class="content">
         <div class="wrapper">
           <div class="proper-content">
             <div class="row">
-              <div class="span9">            
+              <div class="span9">
                 {% block content %}{% endblock %}
               </div>
               <div class="span2" style="border-left:#999 1px solid;">
@@ -107,7 +107,7 @@
                 {% block feeds %}
                 <div class="transparent_well">
                   <img src="{{ STATIC_URL }}articles/img/rss-icon.png" class="img-polaroid">
-                  <a href="{% url articles_rss_feed_latest %}">rss ({% trans 'all' %})</a>
+                    <a href="{{ FEEDBURNER_URL }}">rss feed</a>
                 </div>
                 {% endblock %}
               </div>
@@ -119,7 +119,7 @@
         <div class="footer-wrapper">
           <footer>
             <div class="row">
-              <div class="span8">{% trans 'Site build with' %} 
+              <div class="span8">{% trans 'Site build with' %}
                 <a href="http://python.org" target="_blank" title="Python {{ PYTHON_VERSION }}">Python {{ PYTHON_VERSION }}</a>
                 <a href="http://www.djangoproject.com" target="_blank" title="Django {{ DJANGO_VERSION }}">Django {{ DJANGO_VERSION }}</a>
                 <a href="http://twitter.github.com/bootstrap/" target="_blank" title="Bootstrap">Bootstrap</a>

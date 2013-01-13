@@ -13,3 +13,8 @@ def PythonVersionContextProcessor(request):
 
 def DisqusContextProcessor(request):
     return {"DISQUS_SHORTNAME": getattr(settings, 'DISQUS_FORUM_SHORTNAME', None),}
+
+
+def FeedBurnerContextProcessor(request):
+    lang = 'ru' if request.LANGUAGE_CODE == 'ru' else 'en'
+    return {'FEEDBURNER_URL': settings.FEEDBURNER_URL.format(lang=lang)}

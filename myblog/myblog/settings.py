@@ -48,7 +48,7 @@ LANGUAGES = (
 )
 
 LOCALE_PATHS = (
-    os.path.join(PROJECT_DIR, 'locale'), 
+    os.path.join(PROJECT_DIR, 'locale'),
 )
 
 
@@ -136,6 +136,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "myblog.utils.context_processors.DjangoVersionContextProcessor",
     "myblog.utils.context_processors.PythonVersionContextProcessor",
     "myblog.utils.context_processors.DisqusContextProcessor",
+    "myblog.utils.context_processors.FeedBurnerContextProcessor",
 )
 
 ROOT_URLCONF = 'myblog.urls'
@@ -177,6 +178,8 @@ INSTALLED_APPS = (
 ARTICLES_AUTO_TAG = False
 
 ARTICLES_TEASER_LIMIT = 75
+
+FEEDBURNER_URL = 'http://feeds.feedburner.com/{lang}_lexevorg'
 
 #TRANSMETA settings
 TRANSMETA_DEFAULT_LANGUAGE = 'en'

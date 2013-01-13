@@ -1,14 +1,16 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.contrib import admin
+from django.utils.feedgenerator import Atom1Feed
 import logging
 l = logging.getLogger(settings.DEFAULT_LOGGER)
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^admin/', include(admin.site.urls)),    
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 )
 
@@ -25,12 +27,22 @@ urlpatterns += i18n_patterns('haystack.views',
 
 
 from articles import views
-from articles.feeds import TagFeed, LatestEntries, TagFeedAtom, LatestEntriesAtom
+from articles.feeds import LatestEntries
 
-tag_rss = TagFeed()
-latest_rss = LatestEntries()
-tag_atom = TagFeedAtom()
-latest_atom = LatestEntriesAtom()
+
+class LatestEntriesCustom(LatestEntries):
+    def title(self):
+        if self.link() == '/ru/':
+            return u"Блог Алексея Евсеева"
+        else:
+            return "Alexey Evseev's blog"
+
+
+class LatestEntriesAtomCustom(LatestEntriesCustom):
+    feed_type = Atom1Feed
+
+latest_rss = LatestEntriesCustom()
+latest_atom = LatestEntriesAtomCustom()
 
 urlpatterns += i18n_patterns('',
     (r'^(?P<year>\d{4})/(?P<month>.{3})/(?P<day>\d{1,2})/(?P<slug>.*)/$', views.redirect_to_article),
@@ -56,12 +68,9 @@ urlpatterns += i18n_patterns('',
     # RSS
     url(r'^feeds/latest\.rss$', latest_rss, name='articles_rss_feed_latest'),
     url(r'^feeds/latest/$', latest_rss),
-    url(r'^feeds/tag/(?P<slug>[\w_-]+)\.rss$', tag_rss, name='articles_rss_feed_tag'),
-    url(r'^feeds/tag/(?P<slug>[\w_-]+)/$', tag_rss),
 
     # Atom
     url(r'^feeds/atom/latest\.xml$', latest_atom, name='articles_atom_feed_latest'),
-    url(r'^feeds/atom/tag/(?P<slug>[\w_-]+)\.xml$', tag_atom, name='articles_atom_feed_tag'),
 )
 
 # My urls
@@ -84,9 +93,9 @@ if not settings.DEBUG:
 
 urlpatterns += patterns('django.contrib.staticfiles.views',
     url(r'^robots.txt$', 'serve', {
-        'path':"/txt/robots.txt", 
-        'document_root':settings.STATIC_ROOT, 
-        'insecure':True, 
+        'path':"/txt/robots.txt",
+        'document_root':settings.STATIC_ROOT,
+        'insecure':True,
         'show_indexes': False
     }),
 )
