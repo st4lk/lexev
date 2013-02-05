@@ -180,6 +180,8 @@ ARTICLES_AUTO_TAG = False
 ARTICLES_TEASER_LIMIT = 75
 
 FEEDBURNER_URL = 'http://feeds.feedburner.com/{lang}_lexevorg'
+# cache feed for this amount of seconds
+ARTICLE_FEED_TIMEOUT = 3600
 
 #TRANSMETA settings
 TRANSMETA_DEFAULT_LANGUAGE = 'en'
