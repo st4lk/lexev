@@ -1,7 +1,6 @@
-import logging
-
 from django.contrib import admin
 from models import Page, PageClass, LANGUAGE_LIST
+
 
 class PageAdmin(admin.ModelAdmin):
     list_display = ('title', )
@@ -14,14 +13,14 @@ class PageAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': first_fields}),
         ('Markdown', {
-            'fields':markdown_fields,
+            'fields': markdown_fields,
             'classes': ('collapse',)
         }),
     )
+
 
 class PageClassAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 admin.site.register(Page, PageAdmin)
 admin.site.register(PageClass, PageClassAdmin)
-

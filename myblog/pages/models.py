@@ -5,11 +5,13 @@ from django.contrib.markup.templatetags import markup
 
 LANGUAGE_LIST = [lang[0] for lang in getattr(settings, 'LANGUAGES')]
 
+
 class PageClass(models.Model):
     name = models.CharField(max_length=100)
 
     def __unicode__(self):
         return self.name
+
 
 class Page(models.Model):
     """
@@ -22,11 +24,10 @@ class Page(models.Model):
     markdown_content = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):
-        """Renders the page using the appropriate markdown markup."""        
+        """Renders the page using the appropriate markdown markup."""
         self.do_render_markup()
 
         super(Page, self).save(*args, **kwargs)
-
 
     def do_render_markup(self):
         """Turns markdown markup into HTML"""
@@ -34,13 +35,12 @@ class Page(models.Model):
         result = False
 
         for lang in LANGUAGE_LIST:
-            content_name = "content_"+lang
+            content_name = "content_" + lang
             content_value = getattr(self, content_name)
-            rendered_content_name = "markdown_content_"+lang
-            rendered_content_value = getattr(self, rendered_content_name)
+            rendered_content_name = "markdown_content_" + lang
             original = getattr(self, rendered_content_name)
 
-            setattr(self, rendered_content_name, 
+            setattr(self, rendered_content_name,
                 markup.markdown(content_value))
 
             if getattr(self, rendered_content_name) != original:

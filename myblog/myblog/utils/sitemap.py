@@ -2,6 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from articles.models import Article
 from django.core.urlresolvers import reverse
 
+
 ## articles
 class ArticleSitemap(Sitemap):
     changefreq = "weekly"
@@ -13,13 +14,16 @@ class ArticleSitemap(Sitemap):
     def lastmod(self, obj):
         return obj.publish_date
 
+
 class ArticleEnSitemap(ArticleSitemap):
     def location(self, obj):
         return "/en{0}".format(obj.get_absolute_url())
 
+
 class ArticleRuSitemap(ArticleSitemap):
     def location(self, obj):
         return obj.get_absolute_url()
+
 
 ## contacts
 class ContactsSitemap(Sitemap):
@@ -27,11 +31,13 @@ class ContactsSitemap(Sitemap):
     priority = 0.5
 
     def items(self):
-        return [None, ] # just one
+        return [None, ]  # just one
+
 
 class ContactsEnSitemap(ContactsSitemap):
     def location(self, obj):
         return "/en{0}".format(reverse('contacts'))
+
 
 class ContactsRuSitemap(ContactsSitemap):
     def location(self, obj):

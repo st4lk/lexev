@@ -47,25 +47,35 @@ latest_rss = LatestEntriesCustom()
 latest_atom = LatestEntriesAtomCustom()
 
 urlpatterns += solid_i18n_patterns('',
-    (r'^(?P<year>\d{4})/(?P<month>.{3})/(?P<day>\d{1,2})/(?P<slug>.*)/$', views.redirect_to_article),
-    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/page/(?P<page>\d+)/$', views.display_blog_page, name='articles_in_month_page'),
-    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/$', views.display_blog_page, name='articles_in_month'),
+    url(r'^(?P<year>\d{4})/(?P<month>.{3})/(?P<day>\d{1,2})/(?P<slug>.*)/$',
+        views.redirect_to_article),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/page/(?P<page>\d+)/$',
+        views.display_blog_page, name='articles_in_month_page'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d{1,2})/$',
+        views.display_blog_page, name='articles_in_month'),
 )
 
 urlpatterns += solid_i18n_patterns('',
     url(r'^$', views.display_blog_page, name='articles_archive'),
-    url(r'^page/(?P<page>\d+)/$', views.display_blog_page, name='articles_archive_page'),
+    url(r'^page/(?P<page>\d+)/$', views.display_blog_page,
+        name='articles_archive_page'),
 
-    url(r'^tag/(?P<tag>.*)/page/(?P<page>\d+)/$', views.display_blog_page, name='articles_display_tag_page'),
-    url(r'^tag/(?P<tag>.*)/$', views.display_blog_page, name='articles_display_tag'),
+    url(r'^tag/(?P<tag>.*)/page/(?P<page>\d+)/$',
+        views.display_blog_page, name='articles_display_tag_page'),
+    url(r'^tag/(?P<tag>.*)/$',
+        views.display_blog_page, name='articles_display_tag'),
 
-    url(r'^author/(?P<username>.*)/page/(?P<page>\d+)/$', views.display_blog_page, name='articles_by_author_page'),
-    url(r'^author/(?P<username>.*)/$', views.display_blog_page, name='articles_by_author'),
+    url(r'^author/(?P<username>.*)/page/(?P<page>\d+)/$',
+        views.display_blog_page, name='articles_by_author_page'),
+    url(r'^author/(?P<username>.*)/$',
+        views.display_blog_page, name='articles_by_author'),
 
-    url(r'^(?P<year>\d{4})/(?P<slug>.*)/$', views.display_article, name='articles_display_article'),
+    url(r'^(?P<year>\d{4})/(?P<slug>.*)/$',
+        views.display_article, name='articles_display_article'),
 
     # AJAX
-    url(r'^ajax/tag/autocomplete/$', views.ajax_tag_autocomplete, name='articles_tag_autocomplete'),
+    url(r'^ajax/tag/autocomplete/$',
+        views.ajax_tag_autocomplete, name='articles_tag_autocomplete'),
 )
 
 urlpatterns += i18n_patterns('',
@@ -74,7 +84,8 @@ urlpatterns += i18n_patterns('',
     url(r'^feeds/latest/$', latest_rss),
 
     # Atom
-    url(r'^feeds/atom/latest\.xml$', latest_atom, name='articles_atom_feed_latest'),
+    url(r'^feeds/atom/latest\.xml$',
+        latest_atom, name='articles_atom_feed_latest'),
 )
 
 # My urls
@@ -86,13 +97,16 @@ urlpatterns += solid_i18n_patterns('pages.views',
 from myblog.utils.sitemap import sitemaps
 
 urlpatterns += patterns('',
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
+    (r'^sitemap\.xml$',
+        'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 )
 
 if not settings.DEBUG:
     urlpatterns += patterns('django.contrib.staticfiles.views',
-        url(r'^static/(?P<path>.*)$', 'serve', {'document_root': settings.STATIC_ROOT, 'insecure': True}),
-        url(r'^media/(?P<path>.*)$', 'serve', {'document_root': settings.MEDIA_ROOT, 'insecure': True}),
+        url(r'^static/(?P<path>.*)$', 'serve',
+            {'document_root': settings.STATIC_ROOT, 'insecure': True}),
+        url(r'^media/(?P<path>.*)$', 'serve',
+            {'document_root': settings.MEDIA_ROOT, 'insecure': True}),
     )
 
 urlpatterns += patterns('django.contrib.staticfiles.views',

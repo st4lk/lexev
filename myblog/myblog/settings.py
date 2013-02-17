@@ -20,7 +20,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'data.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
@@ -218,7 +218,7 @@ HAYSTACK_CONNECTIONS = {
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOG_FILENAME = os.path.join(dirname(PROJECT_DIR), "logs", "django.log")
-DEFAULT_LOGGER='myblog_logger'
+DEFAULT_LOGGER = 'myblog_logger'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
@@ -249,11 +249,11 @@ LOGGING = {
         },
         'rotating_file': {
             'level' :       'DEBUG',
-            'formatter' :   'verbose', # from the django doc example
+            'formatter' :   'verbose',  # from the django doc example
             'class' :       'logging.handlers.TimedRotatingFileHandler',
-            'filename' :    LOG_FILENAME, # full path works
+            'filename' :    LOG_FILENAME,  # full path works
             'when' :        'midnight',
-            'interval' :    1, # day
+            'interval' :    1,  # day
             'backupCount' : 7,
         },
     },
@@ -270,6 +270,7 @@ LOGGING = {
     }
 }
 
+
 def override_settings(dottedpath):
     """Imports uppercase modules from an string based module.
     Example:
@@ -278,12 +279,12 @@ def override_settings(dottedpath):
     try:
         _m = import_module(dottedpath)
     except ImportError:
-        warnings.warn("Failed to import %s" % dottedpath) # <-- will show up in your error log
+        warnings.warn("Failed to import %s" % dottedpath)  # <-- will show up in your error log
     else:
         _thismodule = sys.modules[__name__]
-        for _k in dir(_m): # <-- moved the block inside else
-            if _k.isupper() and not _k.startswith('__'): setattr(_thismodule,
-                _k, getattr(_m, _k))
+        for _k in dir(_m):  # <-- moved the block inside else
+            if _k.isupper() and not _k.startswith('__'):
+                setattr(_thismodule, _k, getattr(_m, _k))
 
 # Import openshift settings
 OPENSHIFT_GEAR_NAME = os.environ.get('OPENSHIFT_GEAR_NAME', None)
