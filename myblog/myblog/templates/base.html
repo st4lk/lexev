@@ -59,11 +59,11 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">lexev.org - {% trans 'python developer articles' %}</a>
+          <a class="brand" href="{% if request.LANGUAGE_CODE == 'en' %}/en{% endif %}/">lexev.org - {% trans 'python developer articles' %}</a>
           <div class="nav-collapse">
             <ul class="nav pull-right">
               <li class="dropdown">
-                <form class="navbar-search pull-left" action="/search/" method="get">
+                <form class="navbar-search pull-left" action="{% if request.LANGUAGE_CODE == 'en' %}/en{% endif %}/search/" method="get">
                   <input type="text" name=q class="search-query span2" placeholder="{% trans 'Search' %}">
                 </form>
               </li>
@@ -71,20 +71,19 @@
                 <a href="{% url contacts %}" >{% trans 'About' %}</a>
               </li>
               <li>
-                <form class="navbar-form" action="/i18n/setlang/" method="post">
-                  {% csrf_token %}
-                  <input name="next" type="hidden" value="/ru/{{request.get_full_path|slice:'4:'}}" />
-                  <input name="language" type="hidden" value="ru" />
-                  <input class="btn btn-inverse btn-lng ru-bg" type="submit" value=""/>
-                </form>
+                {% if request.LANGUAGE_CODE == 'ru' %}
+                  <a class="btn btn-inverse btn-lng ru-bg" href="{{request.get_full_path}}" ></a>
+                {% else %}
+                  <a class="btn btn-inverse btn-lng ru-bg" href="{{request.get_full_path|slice:'3:'}}" ></a>
+                {% endif %}
               </li>
               <li>
-                <form class="navbar-form" action="/i18n/setlang/" method="post">
-                  {% csrf_token %}
-                  <input name="next" type="hidden" value="/en/{{request.get_full_path|slice:'4:'}}" />
-                  <input name="language" type="hidden" value="en" />
-                  <input class="btn btn-inverse btn-lng en-bg" type="submit" value="" />
-                </form>
+                {% if request.LANGUAGE_CODE == 'ru' %}
+                  <a class="btn btn-inverse btn-lng en-bg" href="/en{{request.get_full_path}}" ></a>
+                {% else %}
+                  <a class="btn btn-inverse btn-lng en-bg" href="{{request.get_full_path}}" ></a>
+                {% endif %}
+
               </li>
             </ul>
           </div><!-- /.nav-collapse -->

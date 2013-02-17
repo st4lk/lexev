@@ -15,11 +15,11 @@ class ArticleSitemap(Sitemap):
 
 class ArticleEnSitemap(ArticleSitemap):
     def location(self, obj):
-        return "/en{0}".format(obj.get_absolute_url()[3:])
+        return "/en{0}".format(obj.get_absolute_url())
 
 class ArticleRuSitemap(ArticleSitemap):
     def location(self, obj):
-        return "/ru{0}".format(obj.get_absolute_url()[3:])
+        return obj.get_absolute_url()
 
 ## contacts
 class ContactsSitemap(Sitemap):
@@ -31,11 +31,11 @@ class ContactsSitemap(Sitemap):
 
 class ContactsEnSitemap(ContactsSitemap):
     def location(self, obj):
-        return "/en{0}".format(reverse('contacts')[3:])
+        return "/en{0}".format(reverse('contacts'))
 
 class ContactsRuSitemap(ContactsSitemap):
     def location(self, obj):
-        return "/ru{0}".format(reverse('contacts')[3:])
+        return reverse('contacts')
 
 sitemaps = {
     'articles_en': ArticleEnSitemap(),

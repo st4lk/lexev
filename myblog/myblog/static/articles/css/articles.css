@@ -1,8 +1,9 @@
 .withgap{
 	margin-top:10px;
 }
-.btn-lng {	
-	width: 31px !important;
+.btn-lng {
+    width: 30px !important;
+	height: 19px !important;
 	background-position: 0 !important;
 	padding: 0 !important;
 	margin: 8px 5px 6px !important;

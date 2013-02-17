@@ -5,3 +5,4 @@ south==0.7.6
 hg+https://st4lk@bitbucket.org/st4lk/django-articles-transmeta
 git+https://github.com/st4lk/django-transmeta-issue.git
 markdown
+git+https://github.com/st4lk/django-solid-i18n-urls.git
