@@ -15,5 +15,5 @@ ${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py m
 echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py collectstatic --clear --noinput'"
 ${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py collectstatic --clear --noinput
 
-echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py rebuild_index --noinput'"
-${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py rebuild_index --noinput
+echo "Executing 'python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py update_index -r'"
+${OPENSHIFT_RUNTIME_DIR}/bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py update_index -r
