@@ -24,7 +24,6 @@
     <link href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}articles/css/articles.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://sapegin.github.com/social-likes/src/social-likes.css" type="text/css" />
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -55,8 +54,6 @@
         background-image: url("{{ STATIC_URL }}articles/img/en.png");
       }
     </style>
-    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script src="http://sapegin.github.com/social-likes/src/social-likes.min.js"></script>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -136,6 +133,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
     {% block footer %}
     {% endblock %}
