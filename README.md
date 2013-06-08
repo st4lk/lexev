@@ -30,12 +30,12 @@ Download Python2.7 and extract:
 Build and install Python
 
 * `cd Python-2.7.3`
-* `./configure --prefix=$OPENSHIFT_RUNTIME_DIR`
+* `./configure --prefix=$OPENSHIFT_REPO_DIR/../`
 * `make ; make install`
 
 Export new Python path for later configuration (you will need to run this if you logout, etc.):
 
-* `export PATH=$OPENSHIFT_RUNTIME_DIR/bin:$PATH`
+* `export PATH=$OPENSHIFT_REPO_DIR/../bin:$PATH`
 
 Check that new Python is used (should be `Python 2.7.3`):
 
