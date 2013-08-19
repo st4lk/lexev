@@ -8,3 +8,4 @@ myblog/myblog/public/media/*
 !myblog/myblog/public/media/.gitkeep
 myblog/myblog/whoosh_index/*
 !myblog/myblog/whoosh_index/.gitkeep
+*.TODO
