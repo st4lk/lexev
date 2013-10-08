@@ -1,0 +1,32 @@
+{% load url from future %}
+<html>
+<head>
+    <title>CV</title>
+    <style type="text/css">
+    .menu {
+        list-style: none;
+        float:right;
+        margin-right:10%;
+    }
+    .menu li {
+        float:left;
+        margin-left: 5px;
+    }
+
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        {% if request.LANGUAGE_CODE == 'ru' %}
+            <li><a href="/en{{request.get_full_path}}">In english</a></li>
+        {% else %}
+            <li><a href="{{request.get_full_path|slice:'3:'}}">In russian</a></li>
+        {% endif %}
+        <li><a href="#">PDF</a></li>
+    </ul>
+    <div style="clear:both;"></div>
+    {{cv.markdown_content|safe}}
+</body>
+</html>
+
+

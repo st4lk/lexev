@@ -71,6 +71,9 @@
                 <a href="{% url contacts %}" >{% trans 'About' %}</a>
               </li>
               <li>
+                <a href="{% url cv %}" >{% trans 'CV' %}</a>
+              </li>
+              <li>
                 {% if request.LANGUAGE_CODE == 'ru' %}
                   <a class="btn btn-inverse btn-lng ru-bg" href="{{request.get_full_path}}" ></a>
                 {% else %}

@@ -90,7 +90,8 @@ urlpatterns += i18n_patterns('',
 
 # My urls
 urlpatterns += solid_i18n_patterns('pages.views',
-    url(r'^contacts/$', 'display_about_page', name="contacts")
+    url(r'^contacts/$', 'display_about_page', name="contacts"),
+    url(r'^cv/$', 'display_cv_page', name="cv")
 )
 
 # Sitemap
@@ -101,13 +102,14 @@ urlpatterns += patterns('',
         'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps})
 )
 
-if not settings.DEBUG:
-    urlpatterns += patterns('django.contrib.staticfiles.views',
-        url(r'^static/(?P<path>.*)$', 'serve',
-            {'document_root': settings.STATIC_ROOT, 'insecure': True}),
-        url(r'^media/(?P<path>.*)$', 'serve',
-            {'document_root': settings.MEDIA_ROOT, 'insecure': True}),
-    )
+urlpatterns += patterns('',
+    (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+)
+urlpatterns += patterns('',
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+    {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
+)
 
 urlpatterns += patterns('django.contrib.staticfiles.views',
     url(r'^robots.txt$', 'serve', {
