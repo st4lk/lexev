@@ -19,4 +19,4 @@ DATABASES = {
 }
 
 os.environ['PYTHON_EGG_CACHE'] = '/tmp'
-MEDIA_ROOT = join(os.environ.get('OPENSHIFT_DATA_DIR'), 'media')
+MEDIA_ROOT = os.path.join(os.environ.get('OPENSHIFT_DATA_DIR'), 'media')
