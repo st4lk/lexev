@@ -22,7 +22,7 @@
         {% else %}
             <li><a href="{{request.get_full_path|slice:'3:'}}">In russian</a></li>
         {% endif %}
-        <li><a href="#">PDF</a></li>
+        <li><a href="/media/cv/{{request.LANGUAGE_CODE}}/cv.pdf">PDF</a></li>
     </ul>
     <div style="clear:both;"></div>
     {{cv.markdown_content|safe}}
