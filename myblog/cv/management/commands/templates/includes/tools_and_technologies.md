@@ -1,0 +1,4 @@
+- **Back-end**: Python, Django, django-rest-framework, Celery, South, Haystack, Apache Solr, SQLAlchemy, Tornado
+- **Front-end**: JavaScript, jQuery, HTML + CSS
+- **Server Configuration**: Nginx, uWSGI
+- **Tools**: Git, ssh

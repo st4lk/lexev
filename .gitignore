@@ -6,6 +6,10 @@ myblog/myblog/public/static/*
 myblog/myblog/public/media/*
 !myblog/myblog/public/static/.gitkeep
 !myblog/myblog/public/media/.gitkeep
+!myblog/myblog/public/media/cv/en/.gitkeep
+!myblog/myblog/public/media/cv/ru/.gitkeep
 myblog/myblog/whoosh_index/*
 !myblog/myblog/whoosh_index/.gitkeep
 *.TODO
+linkedin_settings.py
+.linkedin_cache

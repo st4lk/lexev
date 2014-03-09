@@ -4,5 +4,11 @@ whoosh==2.4.1
 south==0.7.6
 hg+https://st4lk@bitbucket.org/st4lk/django-articles-transmeta
 git+https://github.com/st4lk/django-transmeta-issue.git
-Markdown==2.2.0
-django-solid-i18n-urls==0.2.1
+solid_i18n==0.4.2
+
+# cv
+python-linkedin==4.0
+Jinja2==2.7.2
+xhtml2pdf==0.0.5
+Markdown==2.4
+reportlab==2.7

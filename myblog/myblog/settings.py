@@ -172,6 +172,7 @@ INSTALLED_APPS = (
 
     'pages',
     'myblog.utils',
+    'cv',
 )
 
 ARTICLES_AUTO_TAG = False
