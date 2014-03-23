@@ -8,7 +8,7 @@ import logging
 
 from solid_i18n.urls import solid_i18n_patterns
 
-l = logging.getLogger(settings.DEFAULT_LOGGER)
+l = logging.getLogger(__name__)
 
 admin.autodiscover()
 
