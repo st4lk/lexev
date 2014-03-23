@@ -1,9 +1,9 @@
-Django==1.5.5
+Django==1.4.10
 django-haystack==2.0.0
 whoosh==2.4.1
 south==0.7.6
-hg+https://st4lk@bitbucket.org/st4lk/django-articles-transmeta
-git+https://github.com/st4lk/django-transmeta-issue.git
+https://bitbucket.org/st4lk/django-articles-transmeta/get/tip.tar.gz
+https://github.com/st4lk/django-transmeta-issue/archive/v0.1.0d.tar.gz
 solid_i18n==0.4.2
 
 # cv
