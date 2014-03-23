@@ -242,7 +242,7 @@ LOGGING = {
             '()': 'django.utils.log.RequireDebugFalse'
         },
         'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue'
+            '()': 'myblog.log.RequireDebugTrue'
         }
     },
     'handlers': {
