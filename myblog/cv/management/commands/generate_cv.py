@@ -4,6 +4,7 @@ import os
 import pickle
 import markdown
 from django.core.management.base import BaseCommand
+from django.core.mail import send_mail
 from django.conf import settings
 from linkedin import linkedin
 from jinja2 import Environment, FileSystemLoader
@@ -195,3 +196,7 @@ class Command(BaseCommand):
             generate_cv()
         except:
             l.exception("Something goes wrong in generate_cv")
+            send_mail("lexev.org error",
+                "generate_cv failed for some reason",
+                from_email='lexev@notify.org',
+                recipient_list=map(lambda x: x[1], settings.ADMINS))

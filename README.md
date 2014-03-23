@@ -82,12 +82,20 @@ Note: you may get an error during the git push to openshift saying the repo is n
 ### Set custom variables:
 
 ```
+# linkedin
 rhc set-env LINKEDIN_STORE_CACHE="False" -a <app_name>
 rhc set-env LINKEDIN_CONSUMER_KEY="TBD" -a <app_name>
 rhc set-env LINKEDIN_CONSUMER_SECRET="TBD" -a <app_name>
 rhc set-env LINKEDIN_USER_TOKEN='TBD' -a <app_name>
 rhc set-env LINKEDIN_USER_SECRET='TBD' -a <app_name>
 rhc set-env LINKEDIN_RETURN_URL='TBD' -a <app_name>
+
+# email
+rhc set-env EMAIL_HOST='TBD' -a <app_name>
+rhc set-env EMAIL_HOST_USER='TBD' -a <app_name>
+rhc set-env EMAIL_HOST_PASSWORD='TBD' -a <app_name>
+rhc set-env EMAIL_PORT='TBD' -a <app_name>
+rhc set-env EMAIL_USE_TLS='True' -a <app_name>
 
 # to list all custom variables
 rhc list-env
