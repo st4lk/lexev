@@ -306,6 +306,8 @@ LOGGING = {
     }
 }
 
+ALLOWED_HOSTS = ["www.lexev.org", ]
+
 # Linked-in settings
 # Keys can be obtained here:
 # https://www.linkedin.com/secure/developer
