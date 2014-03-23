@@ -240,6 +240,9 @@ LOGGING = {
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue'
         }
     },
     'handlers': {
@@ -247,6 +250,12 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'main_formatter',
         },
         'rotating_file': {
             'level':       'DEBUG',
@@ -264,6 +273,15 @@ LOGGING = {
             'maxBytes':    1024*1024*1,  # 1 MB
             'backupCount': 7,
         },
+        'db_file': {
+            'level':       'DEBUG',
+            'filters': ['require_debug_true'],
+            'formatter':   'main_formatter',  # from the django doc example
+            'class':       'logging.handlers.RotatingFileHandler',
+            'filename':    os.path.join(LOGS_DIR, "db.log"),
+            'maxBytes':    1024*1024*1,  # 1 MB
+            'backupCount': 7,
+        }
     },
     'loggers': {
         'django.request': {
@@ -272,11 +290,16 @@ LOGGING = {
             'propagate': True,
         },
         "": {
-            'handlers':     ['rotating_file', ],
-            'level':        'DEBUG',
+            'handlers': ['rotating_file', 'console'],
+            'level': 'DEBUG',
         },
         "linkedin": {
-            'handlers': ['linkedin_file', ],
+            'handlers': ['linkedin_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        "django.db": {
+            'handlers': ['db_file', 'console'],
             'level': 'DEBUG',
             'propagate': False,
         }
