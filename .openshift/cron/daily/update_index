@@ -2,6 +2,3 @@
 APP_NAME=`cat $OPENSHIFT_REPO_DIR/.app_name`
 $OPENSHIFT_REPO_DIR/../bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py update_index -r
 echo "`date`: update_index cron" >> ${OPENSHIFT_LOG_DIR}/cron.log
-
-# update cv
-$OPENSHIFT_REPO_DIR/../bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py generate_cv

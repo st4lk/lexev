@@ -7,7 +7,7 @@ import os
 from os.path import dirname
 from django.utils.importlib import import_module
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_DIR = dirname(os.path.abspath(__file__))
@@ -189,6 +189,8 @@ TRANSMETA_DEFAULT_LANGUAGE = 'en'
 # Change this to be your Disqus site's short name
 DISQUS_FORUM_SHORTNAME = 'lexev-dev'
 
+OPENSHIFT_GEAR_NAME = os.environ.get('OPENSHIFT_GEAR_NAME', None)
+
 # Put your Disqus API key here (only necessary if you're porting comments from django.contrib.comments)
 # DISQUS_USER_API_KEY = 'short_name'
 
@@ -218,22 +220,20 @@ HAYSTACK_CONNECTIONS = {
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-LOG_FILENAME = os.path.join(dirname(PROJECT_DIR), "logs", "django.log")
-DEFAULT_LOGGER = 'myblog_logger'
+if OPENSHIFT_GEAR_NAME is None:
+    LOGS_DIR = os.path.join(dirname(PROJECT_DIR), "logs")
+else:
+    LOGS_DIR = os.environ['OPENSHIFT_LOG_DIR']
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
 
     'formatters': {
-        'verbose': {
-            'format':       '%(asctime)s %(levelname)s: %(filename)s:%(lineno)d '
-                            '%(process)d/%(thread)d - %(message)s',
-            },
-        'readable': {
-            'format':       '%(levelname)-7s: %(filename)15s:%(lineno)4d  -  %(message)s',
-            },
-        'simple': {
-            'format':       '%(levelname)-7s: %(message)s',
+        'main_formatter': {
+            'format': '%(levelname)s:%(name)s: %(message)s '
+                      '(%(asctime)s; %(filename)s:%(lineno)d)',
+            'datefmt': "%Y-%m-%d %H:%M:%S",
         },
     },
 
@@ -249,13 +249,20 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler'
         },
         'rotating_file': {
-            'level' :       'DEBUG',
-            'formatter' :   'verbose',  # from the django doc example
-            'class' :       'logging.handlers.TimedRotatingFileHandler',
-            'filename' :    LOG_FILENAME,  # full path works
-            'when' :        'midnight',
-            'interval' :    1,  # day
-            'backupCount' : 7,
+            'level':       'DEBUG',
+            'formatter':   'main_formatter',  # from the django doc example
+            'class':       'logging.handlers.RotatingFileHandler',
+            'filename':    os.path.join(LOGS_DIR, "django.log"),
+            'maxBytes':    1024*1024*1,  # 1 MB
+            'backupCount': 7,
+        },
+        'linkedin_file': {
+            'level':       'DEBUG',
+            'formatter':   'main_formatter',  # from the django doc example
+            'class':       'logging.handlers.RotatingFileHandler',
+            'filename':    os.path.join(LOGS_DIR, "linkedin.log"),
+            'maxBytes':    1024*1024*1,  # 1 MB
+            'backupCount': 7,
         },
     },
     'loggers': {
@@ -264,12 +271,32 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        DEFAULT_LOGGER: {
-            'handlers':     ['rotating_file', ] ,
+        "": {
+            'handlers':     ['rotating_file', ],
             'level':        'DEBUG',
         },
+        "linkedin": {
+            'handlers': ['linkedin_file', ],
+            'level': 'DEBUG',
+            'propagate': False,
+        }
     }
 }
+
+# Linked-in settings
+# Keys can be obtained here:
+# https://www.linkedin.com/secure/developer
+LINKEDIN_CONSUMER_KEY = "TBD"
+LINKEDIN_CONSUMER_SECRET = "TBD"
+LINKEDIN_USER_TOKEN = "TBD"
+LINKEDIN_USER_SECRET = "TBD"
+LINKEDIN_RETURN_URL = "TBD"
+LINKEDIN_STORE_CACHE = "TBD"
+
+try:
+    from settings_local import *
+except ImportError:
+    pass
 
 
 def override_settings(dottedpath):
@@ -288,6 +315,5 @@ def override_settings(dottedpath):
                 setattr(_thismodule, _k, getattr(_m, _k))
 
 # Import openshift settings
-OPENSHIFT_GEAR_NAME = os.environ.get('OPENSHIFT_GEAR_NAME', None)
 if OPENSHIFT_GEAR_NAME is not None:
     override_settings('myblog.deploy.settings.' + OPENSHIFT_GEAR_NAME)

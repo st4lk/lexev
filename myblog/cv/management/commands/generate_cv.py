@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+import logging
 import os
 import pickle
 import markdown
@@ -6,8 +8,9 @@ from django.conf import settings
 from linkedin import linkedin
 from jinja2 import Environment, FileSystemLoader
 from xhtml2pdf import pisa
-import linkedin_settings
 from pages.models import Page
+
+l = logging.getLogger('linkedin')
 
 
 path = lambda root, *a: os.path.join(root, *a)
@@ -46,9 +49,9 @@ def get_linkedin_profile(use_cache=False):
     if profile is None:
 
         authentication = linkedin.LinkedInDeveloperAuthentication(
-            linkedin_settings.CONSUMER_KEY, linkedin_settings.CONSUMER_SECRET,
-            linkedin_settings.USER_TOKEN, linkedin_settings.USER_SECRET,
-            linkedin_settings.RETURN_URL, linkedin.PERMISSIONS.enums.values())
+            settings.LINKEDIN_CONSUMER_KEY, settings.LINKEDIN_CONSUMER_SECRET,
+            settings.LINKEDIN_USER_TOKEN, settings.LINKEDIN_USER_SECRET,
+            settings.LINKEDIN_RETURN_URL, linkedin.PERMISSIONS.enums.values())
 
         # Pass it in to the app...
 
@@ -113,6 +116,7 @@ def get_linkedin_profile(use_cache=False):
             # "network",
 
         ])
+        l.debug("Got profile from linkedin: '{0}'".format(profile))
         set_linkedin_cache(profile)
     return profile
 
@@ -159,17 +163,23 @@ def save_md(md_en, html_en, md_ru, html_ru):
 
 
 def generate_cv():
-    profile = get_linkedin_profile(linkedin_settings.STORE_LINKEDIN_CACHE)
+    l.info("Start generating linkedin CV...")
+    profile = get_linkedin_profile(settings.LINKEDIN_STORE_CACHE)
     profile = add_info_to_profile(profile)
 
     context = {"linkedin": profile, }
     md_en = jinja_env.get_template('cv.md').render(context).encode('utf8')
+    l.info("Generated mardown english successfully")
     html_en = generate_html(md_en)
+    l.info("Generated html english successfully")
     save_md(md_en, html_en, md_en, html_en)
+    l.info("Saved english content successfully")
     pdf_en = os.path.join(settings.MEDIA_ROOT, 'cv/en/cv.pdf')
     generate_pdf(html_en, pdf_en)
+    l.info("English cv.pdf genrated successfully")
     pdf_ru = os.path.join(settings.MEDIA_ROOT, 'cv/ru/cv.pdf')
     generate_pdf(html_en, pdf_ru)
+    l.info("Russian cv.pdf genrated successfully")
 
 
 class Command(BaseCommand):
@@ -177,4 +187,7 @@ class Command(BaseCommand):
     help = 'generage cv'
 
     def handle(self, **options):
-        generate_cv()
+        try:
+            generate_cv()
+        except:
+            l.exception("Something goes wrong in generate_cv")

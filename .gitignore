@@ -11,5 +11,5 @@ myblog/myblog/public/media/*
 myblog/myblog/whoosh_index/*
 !myblog/myblog/whoosh_index/.gitkeep
 *.TODO
-linkedin_settings.py
+settings_local.py
 .linkedin_cache

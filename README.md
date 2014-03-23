@@ -79,6 +79,28 @@ Note: you may get an error during the git push to openshift saying the repo is n
 
 `git push -f openshift master`
 
+### Set custom variables:
+
+```
+rhc set-env LINKEDIN_STORE_CACHE="False" -a <app_name>
+rhc set-env LINKEDIN_CONSUMER_KEY="TBD" -a <app_name>
+rhc set-env LINKEDIN_CONSUMER_SECRET="TBD" -a <app_name>
+rhc set-env LINKEDIN_USER_TOKEN='TBD' -a <app_name>
+rhc set-env LINKEDIN_USER_SECRET='TBD' -a <app_name>
+rhc set-env LINKEDIN_RETURN_URL='TBD' -a <app_name>
+
+# to list all custom variables
+rhc list-env
+
+# to unset cuctom variables
+rhc list-unset
+
+# help
+rhc help env
+```
+
+Get linked-in keys here: [https://www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer)
+
 
 ### * Note
 

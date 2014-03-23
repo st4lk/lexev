@@ -1,0 +1,13 @@
+#!/bin/bash
+# copy this script into $OPENSHIFT_DATA_DIR
+# rename to set_env.sh
+# give executable rigts: chmod a+x set_env.sh
+
+# https://www.linkedin.com/secure/developer?showinfo=&app_id=3325951&acc_id=1771001&compnay_name=Lexev&app_name=cv-generator
+export APP_NAME=`cat $OPENSHIFT_REPO_DIR/.app_name`
+export STORE_LINKEDIN_CACHE="False"
+export CONSUMER_KEY="TBD"
+export CONSUMER_SECRET="TBD"
+export USER_TOKEN='TBD'
+export USER_SECRET='TBD'
+export RETURN_URL='TBD'

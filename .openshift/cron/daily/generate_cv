@@ -1,0 +1,3 @@
+#!/bin/bash
+APP_NAME=`cat $OPENSHIFT_REPO_DIR/.app_name`
+$OPENSHIFT_REPO_DIR/../bin/python ${OPENSHIFT_REPO_DIR}${APP_NAME}/manage.py generate_cv
