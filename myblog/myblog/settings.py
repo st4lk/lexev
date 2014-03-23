@@ -306,7 +306,7 @@ LOGGING = {
     }
 }
 
-ALLOWED_HOSTS = ["www.lexev.org", ]
+ALLOWED_HOSTS = ["*"]
 
 # Linked-in settings
 # Keys can be obtained here:
