@@ -1,5 +1,6 @@
 {% load article_tags %}
 {% load i18n %}
+{% load url from future %}
 
 <!DOCTYPE html>
 <html lang="{{request.LANGUAGE_CODE}}">
@@ -68,10 +69,10 @@
                 </form>
               </li>
               <li>
-                <a href="{% url contacts %}" >{% trans 'About' %}</a>
+                <a href="{% url 'contacts' %}" >{% trans 'About' %}</a>
               </li>
               <li>
-                <a href="{% url cv %}" >{% trans 'CV' %}</a>
+                <a href="{% url 'cv' %}" >{% trans 'CV' %}</a>
               </li>
               <li>
                 {% if request.LANGUAGE_CODE == 'ru' %}
@@ -126,7 +127,7 @@
                 <a href="http://www.djangoproject.com" target="_blank" title="Django {{ DJANGO_VERSION }}">Django {{ DJANGO_VERSION }}</a>
                 <a href="http://twitter.github.com/bootstrap/" target="_blank" title="Bootstrap">Bootstrap</a>
               </div>
-              <div class="span3"><a href="{% url contacts %}">{% trans 'Alexey Evseev' %}</a></div>
+              <div class="span3"><a href="{% url 'contacts' %}">{% trans 'Alexey Evseev' %}</a></div>
             </div>
           </footer>
         </div><!-- /footer-wrapper -->
