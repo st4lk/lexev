@@ -100,8 +100,8 @@ rhc set-env EMAIL_USE_TLS='True' -a <app_name>
 # to list all custom variables
 rhc list-env
 
-# to unset cuctom variables
-rhc list-unset
+# to unset custom variables
+rhc unset-env
 
 # help
 rhc help env
