@@ -101,6 +101,10 @@ rhc help env
 
 Get linked-in keys here: [https://www.linkedin.com/secure/developer](https://www.linkedin.com/secure/developer)
 
+### Useful commands
+
+- rhc ssh -a <app_name>
+
 
 ### * Note
 

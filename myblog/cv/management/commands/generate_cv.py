@@ -16,7 +16,11 @@ l = logging.getLogger('linkedin')
 path = lambda root, *a: os.path.join(root, *a)
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE_ROOT = path(ROOT, 'templates')
-CACHE_FILE = '.linkedin_cache'
+if settings.OPENSHIFT_GEAR_NAME is None:
+    CACHE_FILE = '.linkedin_cache'
+else:
+    CACHE_FILE = os.path.join(os.environ['OPENSHIFT_TMP_DIR'], '.linkedin_cache')
+
 
 # Jinja settings
 # for all options see http://jinja.pocoo.org/docs/api/#jinja2.Environment
@@ -163,7 +167,7 @@ def save_md(md_en, html_en, md_ru, html_ru):
 
 
 def generate_cv():
-    l.info("Start generating linkedin CV...")
+    l.info("### Start generating linkedin CV...")
     profile = get_linkedin_profile(settings.LINKEDIN_STORE_CACHE)
     profile = add_info_to_profile(profile)
 
