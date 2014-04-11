@@ -1,7 +1,7 @@
 Summary
 =======
 
-Alexey Evseev, web developer based in Moscow, Russia. 
+Alexey Evseev, web developer based in Moscow, Russia.<br/>Date of Birth: 06.02.1985
 
 {{ linkedin.summary }}
 
@@ -18,9 +18,21 @@ Experience
 _{{ p.title }}_
 
 {{ p.summary }}
-{% if 'additional' in p %}
+{% if p.company.name == 'Freelance' %}
 
-{{ p.additional }}
+Projects, i've been involved to:
+
+- fursk.ru
+- dropnroll.tv
+- courses.by
+- wirelayer.net
+- 3dplitka.ru
+- tvoya.mechta.ru
+
+
+Open-source contributing:
+
+- django-oscar
 {% endif %}
 
 {% endfor %}
@@ -32,6 +44,13 @@ Education
 ### {{ e.schoolName }} ({{e.startDate.year}} - {{e.endDate.year}})
 
 {{ e.degree }}, {{ e.fieldOfStudy }}
+{% endfor %}
+
+Certifications
+==============
+
+{% for cert in linkedin['certifications']['values'] %}
+ - {{ cert.name }}{% if 'C100DEV' in cert.name %}, license 746-203-198{% endif %}
 {% endfor %}
 
 Courses

@@ -1,5 +1,5 @@
 *.db
-*.log
+*.log*
 *.pyc
 local_settings.py
 myblog/myblog/public/static/*

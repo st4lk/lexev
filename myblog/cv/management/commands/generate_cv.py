@@ -126,25 +126,6 @@ def get_linkedin_profile(use_cache=False):
     return profile
 
 
-def add_info_to_profile(profile):
-    for position in profile['positions']['values']:
-        if position['company']['name'] == 'Freelance':
-            position['additional'] = """Projects, i've been involved to:
-
-- fursk.ru
-- dropnroll.tv
-- courses.by
-- wirelayer.net
-- 3dplitka.ru
-
-
-Open-source contributing:
-
-- django-oscar
-"""
-    return profile
-
-
 def generate_html(md_content):
     html_content = jinja_env.get_template('includes/header.html').render({}).encode('utf8')
     html_content += markdown.markdown(md_content, extensions=['headerid'])
@@ -170,7 +151,6 @@ def save_md(md_en, html_en, md_ru, html_ru):
 def generate_cv():
     l.info("### Start generating linkedin CV...")
     profile = get_linkedin_profile(settings.LINKEDIN_STORE_CACHE)
-    profile = add_info_to_profile(profile)
 
     context = {"linkedin": profile, }
     md_en = jinja_env.get_template('cv.md').render(context).encode('utf8')
