@@ -33,6 +33,9 @@ Projects, i've been involved to:
 Open-source contributing:
 
 - django-oscar
+- django-solid-i18n-urls
+- acl_webapp
+- others
 {% endif %}
 
 {% endfor %}
