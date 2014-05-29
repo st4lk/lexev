@@ -15,13 +15,13 @@
 {% if paginator and page_obj %}
 {% ifnotequal paginator.page_range|length 1 %}
 {% for p in paginator.page_range %}
-{% if forloop.first %}<ul class="pagination-pages">
+{% if forloop.first %}<ul class="pagination">
 {% if page_obj.has_previous %}
     <li><a href="{% get_page_url 1 %}">&laquo;</a></li>
     <li><a href="{% get_page_url page_obj.previous_page_number %}">&lsaquo;</a></li>
 {% endif %}
 {% endif %}
-    <li><a href="{% get_page_url p %}"{% ifequal p page_obj.number %} class="current-page"{% endifequal %}>{{ p }}</a></li>
+    <li{% ifequal p page_obj.number %} class="active"{% endifequal %}><a href="{% get_page_url p %}">{{ p }}</a></li>
 {% if forloop.last %}
 {% if page_obj.has_next %}
     <li><a href="{% get_page_url page_obj.next_page_number %}">&rsaquo;</a></li>
