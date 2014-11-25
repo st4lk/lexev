@@ -1,4 +1,5 @@
 - **Back-end**: Python, Django, Tornado
 - **Front-end**: JavaScript, jQuery, HTML + CSS
 - **Server Configuration**: Nginx, uWSGI
+- **Databases**: MongoDB, PosgreSQL, MySQL
 - **Tools**: Git, ssh
