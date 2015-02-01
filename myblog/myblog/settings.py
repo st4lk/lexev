@@ -274,7 +274,7 @@ LOGGING = {
             'backupCount': 7,
         },
         'db_file': {
-            'level':       'DEBUG',
+            'level':       'INFO',
             'filters': ['require_debug_true'],
             'formatter':   'main_formatter',  # from the django doc example
             'class':       'logging.handlers.RotatingFileHandler',
@@ -291,7 +291,7 @@ LOGGING = {
         },
         "": {
             'handlers': ['rotating_file', 'console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
         },
         "linkedin": {
             'handlers': ['linkedin_file', 'console'],
