@@ -40,3 +40,5 @@ EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 EMAIL_PORT = int(os.environ['EMAIL_PORT'])
 EMAIL_USE_TLS = get_bool_env_value('EMAIL_USE_TLS')
+
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
