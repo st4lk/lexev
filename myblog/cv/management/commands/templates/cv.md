@@ -43,11 +43,11 @@ Open-source contributing:
 Education
 =========
 
-{% for e in linkedin['educations']['values'] %}
+{% for e in linkedin['educations']['values'] %}{% if e.schoolName %}
 ### {{ e.schoolName }} ({{e.startDate.year}} - {{e.endDate.year}})
 
 {{ e.degree }}, {{ e.fieldOfStudy }}
-{% endfor %}
+{% endif %}{% endfor %}
 
 Certifications
 ==============
