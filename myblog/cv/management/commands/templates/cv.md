@@ -22,18 +22,18 @@ _{{ p.title }}_
 
 Projects, i've been involved to:
 
-- fursk.ru
 - dropnroll.tv
-- courses.by
 - wirelayer.net
+- fursk.ru
 - 3dplitka.ru
-- tvoya.mechta.ru
+- woobie.ru
 
 
 Open-source contributing:
 
-- django-oscar
 - django-solid-i18n-urls
+- django-affiliate
+- django-oscar
 - acl_webapp
 - others
 {% endif %}
@@ -54,13 +54,6 @@ Certifications
 
 {% for cert in linkedin['certifications']['values'] %}
  - {{ cert.name }}{% if 'C100DEV' in cert.name %}, license 746-203-198{% endif %}
-{% endfor %}
-
-Courses
-=======
-
-{% for c in linkedin['courses']['values'] %}
- - {{ c.name }}
 {% endfor %}
 
 Links
