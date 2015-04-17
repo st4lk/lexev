@@ -174,6 +174,7 @@ INSTALLED_APPS = (
     'pages',
     'myblog.utils',
     'cv',
+    'articles_custom'
 )
 
 ARTICLES_AUTO_TAG = False
@@ -209,6 +210,12 @@ OPENSHIFT_GEAR_NAME = os.environ.get('OPENSHIFT_GEAR_NAME', None)
 #     'markup': 'r',
 #     'acknowledge': True,
 # }
+
+
+MARKDOWN_EXTENSIONS = (
+    'markdown.extensions.tables',
+)
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
