@@ -27,7 +27,7 @@ Projects, i've been involved to:
 - fursk.ru
 - 3dplitka.ru
 - woobie.ru
-
+- praktikum.ru
 
 Open-source contributing:
 
