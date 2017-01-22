@@ -22,6 +22,9 @@ _{{ p.title }}_
 
 Projects, i've been involved to:
 
+- ezhome.com
+- finance.rambler.ru
+- daily.afisha.ru
 - dropnroll.tv
 - wirelayer.net
 - fursk.ru
@@ -32,6 +35,7 @@ Projects, i've been involved to:
 Open-source contributing:
 
 - django-solid-i18n-urls
+- django-rest-social-auth
 - django-affiliate
 - django-oscar
 - acl_webapp
