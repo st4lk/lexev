@@ -20,9 +20,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myblog.settings")
 # This application object is used by any WSGI server configured to use this
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
-from django.core.wsgi import get_wsgi_application
+from django.core.wsgi import get_wsgi_application  # NOQA
 application = get_wsgi_application()
 
-# Apply WSGI middleware here.
-# from helloworld.wsgi import HelloWorldApplication
-# application = HelloWorldApplication(application)
+# Variable USE_WHITENOISE must be set manually in your environment
+if os.environ.get('USE_WHITENOISE', None):
+    from whitenoise.django import DjangoWhiteNoise
+    application = DjangoWhiteNoise(application)

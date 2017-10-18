@@ -28,6 +28,12 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+if os.environ.get('DATABASE_URL'):
+    # Should work on heroku
+    import dj_database_url
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -98,7 +104,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -109,7 +115,7 @@ SECRET_KEY = ''
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -185,7 +191,7 @@ FEEDBURNER_URL = 'http://feeds.feedburner.com/{lang}_lexevorg'
 # cache feed for this amount of seconds
 ARTICLE_FEED_TIMEOUT = 3600
 
-#TRANSMETA settings
+# TRANSMETA settings
 TRANSMETA_DEFAULT_LANGUAGE = 'en'
 
 # Change this to be your Disqus site's short name
@@ -266,28 +272,28 @@ LOGGING = {
             'formatter': 'main_formatter',
         },
         'rotating_file': {
-            'level':       'DEBUG',
-            'formatter':   'main_formatter',  # from the django doc example
-            'class':       'logging.handlers.RotatingFileHandler',
-            'filename':    os.path.join(LOGS_DIR, "django.log"),
-            'maxBytes':    1024*1024*1,  # 1 MB
+            'level': 'DEBUG',
+            'formatter': 'main_formatter',  # from the django doc example
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOGS_DIR, "django.log"),
+            'maxBytes': 1024 * 1024 * 1,  # 1 MB
             'backupCount': 7,
         },
         'linkedin_file': {
-            'level':       'DEBUG',
-            'formatter':   'main_formatter',  # from the django doc example
-            'class':       'logging.handlers.RotatingFileHandler',
-            'filename':    os.path.join(LOGS_DIR, "linkedin.log"),
-            'maxBytes':    1024*1024*1,  # 1 MB
+            'level': 'DEBUG',
+            'formatter': 'main_formatter',  # from the django doc example
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOGS_DIR, "linkedin.log"),
+            'maxBytes': 1024 * 1024 * 1,  # 1 MB
             'backupCount': 7,
         },
         'db_file': {
-            'level':       'INFO',
+            'level': 'INFO',
             'filters': ['require_debug_true'],
-            'formatter':   'main_formatter',  # from the django doc example
-            'class':       'logging.handlers.RotatingFileHandler',
-            'filename':    os.path.join(LOGS_DIR, "db.log"),
-            'maxBytes':    1024*1024*1,  # 1 MB
+            'formatter': 'main_formatter',  # from the django doc example
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOGS_DIR, "db.log"),
+            'maxBytes': 1024 * 1024 * 1,  # 1 MB
             'backupCount': 7,
         }
     },
@@ -337,7 +343,7 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 try:
-    from settings_local import *
+    from settings_local import *  # NOQA
 except ImportError:
     pass
 
@@ -356,6 +362,7 @@ def override_settings(dottedpath):
         for _k in dir(_m):  # <-- moved the block inside else
             if _k.isupper() and not _k.startswith('__'):
                 setattr(_thismodule, _k, getattr(_m, _k))
+
 
 # Import openshift settings
 if OPENSHIFT_GEAR_NAME is not None:

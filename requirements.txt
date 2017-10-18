@@ -5,6 +5,7 @@ south==0.7.6
 https://bitbucket.org/st4lk/django-articles-transmeta/get/tip.tar.gz
 https://github.com/st4lk/django-transmeta-issue/archive/v0.1.0d.tar.gz
 solid_i18n==0.4.2
+psycopg2==2.7.3.1
 
 # cv
 python-linkedin==4.0
@@ -12,3 +13,8 @@ Jinja2==2.7.2
 xhtml2pdf==0.0.5
 Markdown==2.4
 reportlab==2.7
+
+# heroku
+gunicorn==19.7.1
+dj-database-url==0.4.2
+whitenoise==2.0.6
